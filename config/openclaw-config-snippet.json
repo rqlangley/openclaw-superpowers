@@ -1,0 +1,52 @@
+{
+  "_comment": "openclaw-superpowers config snippet — how to use this file",
+  "_comment_detail": [
+    "This file contains the agent definitions needed for openclaw-superpowers.",
+    "",
+    "Option A: Merge manually into your openclaw.json.",
+    "  Add the entries in 'agents.list' to your existing agents.list array.",
+    "  Add the 'subagents' block if you don't have one (or merge the allowAgents list).",
+    "  Replace <username> with your Unix username throughout.",
+    "",
+    "Option B: Use openclaw config patch.",
+    "  Run: openclaw config patch --file openclaw-config-snippet.json",
+    "  (This deep-merges the snippet into your live config.)",
+    "",
+    "After applying, restart the gateway:",
+    "  openclaw gateway restart"
+  ],
+
+  "agents": {
+    "list": [
+      {
+        "id": "coding",
+        "label": "Coding Agent",
+        "description": "Software engineering orchestrator. Plans, delegates to implementer/reviewer subagents, coordinates results.",
+        "workspace": "/home/<username>/.openclaw/workspace-coding",
+        "model": "<mid-model>",
+        "promptMode": "minimal"
+      },
+      {
+        "id": "implementer",
+        "label": "Implementer Agent",
+        "description": "Leaf implementation agent. Builds one task at a time following TDD. No sub-subagents.",
+        "workspace": "/home/<username>/.openclaw/workspace-implementer",
+        "model": "<fast-model>",
+        "promptMode": "minimal"
+      },
+      {
+        "id": "reviewer",
+        "label": "Reviewer Agent",
+        "description": "Leaf review agent. Reviews code and specs for correctness and quality. Read-only. No sub-subagents.",
+        "workspace": "/home/<username>/.openclaw/workspace-reviewer",
+        "model": "<top-model>",
+        "promptMode": "minimal"
+      }
+    ]
+  },
+
+  "subagents": {
+    "allowAgents": ["coding", "implementer", "reviewer"],
+    "maxSpawnDepth": 2
+  }
+}
