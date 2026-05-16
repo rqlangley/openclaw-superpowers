@@ -10,7 +10,7 @@ A native port of [obra/superpowers](https://github.com/obra/superpowers) for the
 
 Clone this repo, then say to your OpenClaw assistant:
 
-> "Please read the README.md in `~/projects/openclaw-superpowers` and help me install the Superpowers framework on my OpenClaw instance. Walk me through the configuration choices first, then set it up."
+> "Please read the README.md in `https://github.com/rqlangley/openclaw-superpowers` and help me install the Superpowers framework on my OpenClaw instance. Walk me through the configuration choices first, then set it up."
 
 Your assistant will read the rest of this file, ask you a few questions about how you want things configured, and handle the installation. You don't need to read anything below this section unless you want to.
 
