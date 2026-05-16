@@ -187,7 +187,9 @@ Execute in order:
 
 After restart, confirm with the user:
 
-- Ask the main assistant to run a trivial coding task (e.g. "write a hello world script in Python")
+- Ask the main assistant to run a small but real coding task that exercises the full pipeline. A good default:
+  > "Write a CSV-to-JSON converter CLI in Python. It should read a CSV from a file path argument, output a JSON array to stdout, handle headers correctly, infer numeric types, and report malformed rows to stderr. Use pytest for tests."
+  This should trigger plan writing, at least 3 implementer dispatches, spec review, and code review — a complete end-to-end exercise of the framework.
 - Confirm it delegates to the `coding` agent (subagent activity should appear in the OpenClaw dashboard)
 - Confirm the result comes back to the main session
 
