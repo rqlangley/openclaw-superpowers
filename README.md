@@ -165,7 +165,17 @@ Execute in order:
 7. **Apply review intensity preference** (if not using full 2-stage)
    Edit `~/.openclaw/plugin-skills/subagent-driven-development/SKILL.md` to reflect the chosen review configuration.
 
-8. **Restart the OpenClaw gateway**
+8. **Add a standing rule to the user's MEMORY.md**
+
+   The `software-dev` skill handles most cases via description matching, but a standing rule in MEMORY.md provides belt-and-suspenders enforcement — it's in context on every turn, even when the skill doesn't fire (e.g. small inline requests, tasks phrased as config work, mid-conversation code snippets).
+
+   Add this to the user's `MEMORY.md` under a "Standing Rules" section (create one if it doesn't exist):
+
+   > **All software development work goes to the coding agent.** Any request to write, modify, debug, or review code — even small scripts — must be delegated via `sessions_spawn(agentId="coding", ...)`. Do not write code inline in the main session.
+
+   Ask the user before writing to their MEMORY.md — it's a personal file. If they decline, note that delegation will be best-effort (skill-driven only) rather than enforced.
+
+9. **Restart the OpenClaw gateway**
    ```
    openclaw gateway restart
    ```
@@ -199,6 +209,7 @@ This table covers everything a user might want to change after initial setup, an
 | Whether extended thinking is used | Respective `AGENTS.md` files (thinking level field in agents.list config) |
 | Adding/removing agents from allowed subagent list | `openclaw.json` → `agents.defaults.subagents.allowAgents` |
 | Max subagent depth | `openclaw.json` → `agents.defaults.subagents.maxSpawnDepth` |
+| Enforcement strictness (always delegate vs. best-effort) | Standing rule in user's `MEMORY.md` — removing it makes delegation skill-driven only |
 
 To re-run any part of the setup (e.g. to change your model choices), just tell your OpenClaw assistant what you want to change and it can apply the edit directly.
 
